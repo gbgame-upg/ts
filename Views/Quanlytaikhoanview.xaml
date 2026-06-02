@@ -1,0 +1,83 @@
+﻿<UserControl x:Class="QLHangTonKho.Views.QuanLyTaiKhoanView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:QLHangTonKho.ViewModels">
+    <UserControl.DataContext>
+        <vm:QuanLyTaiKhoanViewModel/>
+    </UserControl.DataContext>
+
+    <Grid Margin="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Toolbar -->
+        <Border Grid.Row="0" Background="White" Padding="16,12"
+                BorderBrush="#E2E8F0" BorderThickness="0,0,0,1" CornerRadius="12,12,0,0">
+            <WrapPanel>
+                <Button Content="🔄 Làm mới" Style="{StaticResource PrimaryButton}"
+                        Command="{Binding LoadCommand}" Margin="0,0,8,0"/>
+                <Button Content="🔒 Khóa tài khoản" Style="{StaticResource DangerButton}"
+                        Command="{Binding KhoaCommand}" Margin="0,0,8,0"/>
+                <Button Content="🔓 Mở khóa" Style="{StaticResource SuccessButton}"
+                        Command="{Binding MoKhoaCommand}" Margin="0,0,8,0"/>
+                <Button Content="👑 Đổi thành Admin" Style="{StaticResource PrimaryButton}"
+                        Command="{Binding DoiAdminCommand}" Margin="0,0,8,0"/>
+                <Button Content="👤 Đổi thành Nhân viên" Style="{StaticResource PrimaryButton}"
+                        Command="{Binding DoiNhanVienCommand}"/>
+            </WrapPanel>
+        </Border>
+
+        <!-- DataGrid -->
+        <Border Grid.Row="1" Background="White" CornerRadius="0,0,12,12">
+            <DataGrid Margin="12"
+                      ItemsSource="{Binding DanhSach}"
+                      SelectedItem="{Binding Selected}"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      FontSize="14"
+                      RowHeight="40"
+                      BorderThickness="0">
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="#2563EB"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontWeight" Value="SemiBold"/>
+                        <Setter Property="Padding" Value="10,0"/>
+                        <Setter Property="Height" Value="42"/>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Mã TK"        Binding="{Binding MaTK}"          Width="60"/>
+                    <DataGridTextColumn Header="Tên đăng nhập" Binding="{Binding TenDangNhap}"  Width="130"/>
+                    <DataGridTextColumn Header="Họ tên"        Binding="{Binding HoTen}"         Width="*"/>
+                    <DataGridTextColumn Header="Email"         Binding="{Binding Email}"         Width="170"/>
+                    <DataGridTextColumn Header="Nhóm"          Binding="{Binding TenNhom}"       Width="110"/>
+                    <DataGridTextColumn Header="Ngày tạo"      Binding="{Binding NgayTao, StringFormat={}{0:dd/MM/yyyy}}" Width="110"/>
+                    <DataGridTextColumn Header="Đăng nhập cuối" Binding="{Binding NgayDangNhapCuoi, StringFormat={}{0:dd/MM/yyyy HH:mm}}" Width="150"/>
+                    <DataGridTemplateColumn Header="Trạng thái" Width="110">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock VerticalAlignment="Center" FontWeight="SemiBold">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Text" Value="✅ Hoạt động"/>
+                                            <Setter Property="Foreground" Value="#16A34A"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding TrangThai}" Value="False">
+                                                    <Setter Property="Text" Value="🔒 Bị khóa"/>
+                                                    <Setter Property="Foreground" Value="#DC2626"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+    </Grid>
+</UserControl>

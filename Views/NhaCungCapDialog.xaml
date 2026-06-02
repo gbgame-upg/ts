@@ -1,0 +1,73 @@
+﻿<Window x:Class="QLHangTonKho.Views.NhaCungCapDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Thông tin nhà cung cấp"
+        Width="440" Height="360"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" x:Name="lblTitle"
+                   Text="➕ Thêm nhà cung cấp"
+                   FontSize="16" FontWeight="Bold"
+                   Foreground="#0F172A" Margin="0,0,0,16"/>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Tên NCC *"
+                       VerticalAlignment="Center" Margin="0,0,0,12"/>
+            <TextBox   Grid.Row="0" Grid.Column="1" x:Name="txtTenNCC"
+                       Height="36" Padding="8,6" Margin="0,0,0,12"/>
+
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Địa chỉ"
+                       VerticalAlignment="Center" Margin="0,0,0,12"/>
+            <TextBox   Grid.Row="1" Grid.Column="1" x:Name="txtDiaChi"
+                       Height="36" Padding="8,6" Margin="0,0,0,12"/>
+
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Điện thoại"
+                       VerticalAlignment="Center" Margin="0,0,0,12"/>
+            <TextBox   Grid.Row="2" Grid.Column="1" x:Name="txtDienThoai"
+                       Height="36" Padding="8,6" Margin="0,0,0,12"/>
+
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Email"
+                       VerticalAlignment="Center" Margin="0,0,0,12"/>
+            <TextBox   Grid.Row="3" Grid.Column="1" x:Name="txtEmail"
+                       Height="36" Padding="8,6" Margin="0,0,0,12"/>
+
+            <TextBlock Grid.Row="4" Grid.Column="0" Text="Trạng thái"
+                       VerticalAlignment="Center"/>
+            <CheckBox  Grid.Row="4" Grid.Column="1" x:Name="chkTrangThai"
+                       Content="Đang hợp tác" IsChecked="True"
+                       VerticalAlignment="Center"/>
+        </Grid>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal"
+                    HorizontalAlignment="Right" Margin="0,16,0,0">
+            <Button Content="Hủy" Width="90" Height="34" Margin="0,0,10,0"
+                    Click="btnHuy_Click"
+                    Background="#F1F5F9" Foreground="#334155"
+                    BorderBrush="#CBD5E1" BorderThickness="1"/>
+            <Button Content="💾 Lưu" Width="100" Height="34"
+                    Click="btnLuu_Click"
+                    Background="#2563EB" Foreground="White"
+                    BorderThickness="0" FontWeight="SemiBold"/>
+        </StackPanel>
+    </Grid>
+</Window>
